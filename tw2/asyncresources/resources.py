@@ -98,11 +98,8 @@ class _AsyncResources(list):
         return super(_AsyncResources, self).append(res)
 
     @property
-    def links(self):
+    def js_links(self):
         return [r.link for r in self if isinstance(r, TW2JSLink)]
-
-    def js_array(self):
-        return json.dumps(self.links)
 
 
 def _replace_resources(loader, widget):

@@ -37,4 +37,4 @@ class JSSource(TW2JSSource):
 
     def prepare(self):
         super(TW2JSSource, self).prepare()
-        self.axel_dependencies = json.dumps([_calc_axel_id(l) for l in self.dependencies.links])
+        self.axel_dependencies = json.dumps([_calc_axel_id(l) for l in self.dependencies.js_links])

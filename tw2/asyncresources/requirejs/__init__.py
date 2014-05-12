@@ -1,3 +1,4 @@
+import json
 from tw2.core import params as tw2pm
 from tw2.core.resources import JSLink as TW2JSLink
 from tw2.core.resources import CSSLink as TW2CSSLink
@@ -27,4 +28,8 @@ class CSSLink(TW2CSSLink):
 class JSSource(TW2JSSource):
     dependencies = tw2pm.Param('resources required by this script')
     inline_engine_name = 'genshi'
-    template = '<script type="text/javascript">require(${w.dependencies.js_array()}, function() { $w.src })</script>'
+    template = '<script type="text/javascript">require(${w.js_dependencies}, function() { $w.src })</script>'
+
+    def prepare(self):
+        super(TW2JSSource, self).prepare()
+        self.js_dependencies = json.dumps(self.dependencies.js_links)
